@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:international_phone_input/international_phone_input.dart';
 
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:quiz_loginmodule/Screens/Login/OTPpage.dart';
 
 import 'package:quiz_loginmodule/constants.dart';
 
-import 'package:flutter/services.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -27,28 +26,15 @@ class _LoginBodyState extends State<LoginBody> {
   TextEditingController phoneController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
   String username = "";
-  String phoneNumber;
-  String phoneIsoCode;
   bool visible = false;
-  String confirmedNumber = '';
-
-  void onPhoneNumberChange(
-      String number, String internationalizedPhoneNumber, String isoCode) {
-    print(number);
-    phoneNumber = internationalizedPhoneNumber;
-    print(phoneNumber);
-    phoneIsoCode = isoCode;
-    confirmedNumber = internationalizedPhoneNumber;
-  }
-
- 
- 
 
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
     // ignore: unused_local_variable
-    String phone = '';
+    String phoneNumber = '';
+
+
 
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
@@ -79,10 +65,19 @@ class _LoginBodyState extends State<LoginBody> {
             SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
-              child: InternationalPhoneInput(
-                initialPhoneNumber: phoneNumber,
-                initialSelection: 'IN',
-                labelText: "Phone Number",
+              child: IntlPhoneField(
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                ),
+                initialCountryCode: 'IN',
+               autoValidate: true,
+                onChanged: (phone) {
+                  print(phone.completeNumber);
+                  phoneNumber = phone.completeNumber;
+                },
               ),
             ),
             SizedBox(height: 20),
@@ -92,35 +87,18 @@ class _LoginBodyState extends State<LoginBody> {
               height: 1,
               color: Colors.black,
             ),
-            SizedBox(height: 50),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TextFormField(
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                    LengthLimitingTextInputFormatter(10)
-                  ],
-                  controller: phoneController,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: kPrimaryLightColor,
-                      border: OutlineInputBorder(),
-                      labelText: 'Phone Number',
-                      hintText: 'Enter 10-digit number'),
-                ),
-              ),
-            ),
+
+            
+
             Container(
               child: RoundedButton(
                 text: 'Generate OTP',
                 press: () {
-                  phone = phoneController.text;
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return OTPScreen(confirmedNumber);
+                        return OTPScreen(phoneNumber);
                       },
                     ),
                   );
