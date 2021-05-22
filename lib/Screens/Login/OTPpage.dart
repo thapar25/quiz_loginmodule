@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pin_put/pin_put.dart';
 import 'package:quiz_loginmodule/Screens/Home/HomePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPScreen extends StatefulWidget {
   final String phone;
@@ -63,9 +64,13 @@ class _OTPScreenState extends State<OTPScreen> {
                           verificationId: _verificationCode, smsCode: pin))
                       .then((value) async {
                     if (value.user != null) {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      prefs.setString('phone', phoneNumber);
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(phoneNumber)),
                           (route) => false);
                     }
                   });
@@ -85,15 +90,18 @@ class _OTPScreenState extends State<OTPScreen> {
 
   _verifyPhone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+91${widget.phone}',
+        phoneNumber: '${widget.phone}',
         verificationCompleted: (PhoneAuthCredential credential) async {
           await FirebaseAuth.instance
               .signInWithCredential(credential)
               .then((value) async {
             if (value.user != null) {
+              String pg = widget.phone;
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('phone', pg);
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => HomePage(pg)),
                   (route) => false);
             }
           });
