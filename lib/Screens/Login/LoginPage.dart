@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:quiz_loginmodule/Screens/Login/OTPpage.dart';
-
 import 'package:quiz_loginmodule/constants.dart';
-
 
 class LoginPage extends StatelessWidget {
   @override
@@ -23,7 +21,6 @@ class LoginBody extends StatefulWidget {
 class _LoginBodyState extends State<LoginBody> {
   @override
   // ignore: override_on_non_overriding_member
-  TextEditingController phoneController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
   String username = "";
   bool visible = false;
@@ -33,8 +30,6 @@ class _LoginBodyState extends State<LoginBody> {
     Size size = MediaQuery.of(context).size;
     // ignore: unused_local_variable
     String phoneNumber = '';
-
-
 
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
@@ -73,9 +68,9 @@ class _LoginBodyState extends State<LoginBody> {
                   ),
                 ),
                 initialCountryCode: 'IN',
-               autoValidate: true,
+                autoValidate: true,
                 onChanged: (phone) {
-                  print(phone.completeNumber);
+                  //print(phone.completeNumber);
                   phoneNumber = phone.completeNumber;
                 },
               ),
@@ -87,13 +82,11 @@ class _LoginBodyState extends State<LoginBody> {
               height: 1,
               color: Colors.black,
             ),
-
-            
-
             Container(
               child: RoundedButton(
                 text: 'Generate OTP',
                 press: () {
+                  addUsername();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -109,5 +102,10 @@ class _LoginBodyState extends State<LoginBody> {
         ),
       ))),
     );
+  }
+
+  addUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('username', nameController.text);
   }
 }

@@ -34,41 +34,44 @@ class Body extends StatelessWidget {
               color: Colors.red,
               child: Text("Logo goes here"),
             ),
-            SizedBox(
-                height: size.height * 0.08,
-                child: Text.rich(TextSpan(
-                    text: 'By continuing, you agree to our ',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Terms of Service',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            decoration: TextDecoration.underline,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              // ignore: unnecessary_statements
-                              _launchTOS(); // function
-                            }),
-                      TextSpan(
-                          text: ' and ',
-                          style: TextStyle(fontSize: 18, color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: 'Privacy Policy',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    decoration: TextDecoration.underline),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // ignore: unnecessary_statements
-                                    _launchTOS();
-                                  })
-                          ])
-                    ]))),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: SizedBox(
+                  height: size.height * 0.08,
+                  child: Text.rich(TextSpan(
+                      text: 'By continuing, you agree to our ',
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Terms of Service',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.black,
+                              decoration: TextDecoration.underline,
+                            ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                // ignore: unnecessary_statements
+                                _launchTOS(); // function
+                              }),
+                        TextSpan(
+                            text: ' and ',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'Privacy Policy',
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      color: Colors.black,
+                                      decoration: TextDecoration.underline),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      // ignore: unnecessary_statements
+                                      _launchTOS();
+                                    })
+                            ])
+                      ]))),
+            ),
             SizedBox(height: size.height * 0.2),
             RoundedButton(
               text: "ACCEPT",
