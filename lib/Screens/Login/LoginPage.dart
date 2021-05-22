@@ -35,30 +35,19 @@ class _LoginBodyState extends State<LoginBody> {
   void onPhoneNumberChange(
       String number, String internationalizedPhoneNumber, String isoCode) {
     print(number);
-    setState(() {
-      phoneNumber = internationalizedPhoneNumber;
-      print(phoneNumber);
-      phoneIsoCode = isoCode;
-    });
+    phoneNumber = internationalizedPhoneNumber;
+    print(phoneNumber);
+    phoneIsoCode = isoCode;
+    confirmedNumber = internationalizedPhoneNumber;
   }
 
-/*
-  onValidPhoneNumber(
-      String number, String internationalizedPhoneNumber, String isoCode) {
-    setState(() {
-      visible = true;
-      confirmedNumber = internationalizedPhoneNumber;
-    });
-  }
-*/
-  void printDetails() {
-    print(nameController.text);
-    //print(phone);
-  }
+ 
+ 
 
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     Size size = MediaQuery.of(context).size;
+    // ignore: unused_local_variable
     String phone = '';
 
     return Scaffold(
@@ -76,7 +65,6 @@ class _LoginBodyState extends State<LoginBody> {
               child: Center(),
             ),
             Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 controller: nameController,
@@ -92,7 +80,6 @@ class _LoginBodyState extends State<LoginBody> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: InternationalPhoneInput(
-                onPhoneNumberChange: onPhoneNumberChange,
                 initialPhoneNumber: phoneNumber,
                 initialSelection: 'IN',
                 labelText: "Phone Number",
@@ -106,13 +93,8 @@ class _LoginBodyState extends State<LoginBody> {
               color: Colors.black,
             ),
             SizedBox(height: 50),
-            Visibility(
-              child: Text(confirmedNumber),
-              visible: visible,
-            ),
             Container(
               child: Padding(
-                //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
                 padding: EdgeInsets.symmetric(horizontal: 15),
                 child: TextFormField(
                   inputFormatters: <TextInputFormatter>[
@@ -120,13 +102,7 @@ class _LoginBodyState extends State<LoginBody> {
                     LengthLimitingTextInputFormatter(10)
                   ],
                   controller: phoneController,
-                  /*
-                    maxLength: 10,
-                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                    */
-
                   decoration: InputDecoration(
-                      //prefix: Text('${code}'),
                       filled: true,
                       fillColor: kPrimaryLightColor,
                       border: OutlineInputBorder(),
@@ -135,43 +111,16 @@ class _LoginBodyState extends State<LoginBody> {
                 ),
               ),
             ),
-            /*
-                Padding(
-                  //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: TextFormField(
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                      LengthLimitingTextInputFormatter(10)
-                    ],
-                    controller: phoneController,
-                    /*
-                    maxLength: 10,
-                    maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                    */
-
-                    decoration: InputDecoration(
-                        //prefix: Text('${code}'),
-                        filled: true,
-                        fillColor: kPrimaryLightColor,
-                        border: OutlineInputBorder(),
-                        labelText: 'Phone Number',
-                        hintText: 'Enter 10-digit number'),
-                  ),
-                ),
-
-                */
             Container(
               child: RoundedButton(
                 text: 'Generate OTP',
                 press: () {
                   phone = phoneController.text;
-                  printDetails();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return OTPScreen(phone);
+                        return OTPScreen(confirmedNumber);
                       },
                     ),
                   );
