@@ -1,0 +1,917 @@
+define(['dart_sdk', 'packages/international_phone_input/src/phone_service.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/input_border.dart', 'packages/international_phone_input/src/country.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/material/dropdown.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/text_field.dart', 'packages/flutter/src/services/text_input.dart'], (function load__packages__international_phone_input__src__international_phone_input_dart(dart_sdk, packages__international_phone_input__src__phone_service$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__input_border$46dart, packages__international_phone_input__src__country$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__material__dropdown$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__text_field$46dart, packages__flutter__src__services__text_input$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const convert = dart_sdk.convert;
+  const collection = dart_sdk.collection;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const phone_service = packages__international_phone_input__src__phone_service$46dart.src__phone_service;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const editable_text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__editable_text;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const image = packages__flutter__src__widgets__widget_span$46dart.src__widgets__image;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const input_border = packages__flutter__src__material__input_border$46dart.src__material__input_border;
+  const country = packages__international_phone_input__src__country$46dart.src__country;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const dropdown = packages__flutter__src__material__dropdown$46dart.src__material__dropdown;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const text_field = packages__flutter__src__material__text_field$46dart.src__material__text_field;
+  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
+  var international_phone_input = Object.create(dart.library);
+  var $toUpperCase = dartx.toUpperCase;
+  var $toString = dartx.toString;
+  var $_get = dartx._get;
+  var $firstWhere = dartx.firstWhere;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $length = dartx.length;
+  var $isEmpty = dartx.isEmpty;
+  var $toLowerCase = dartx.toLowerCase;
+  var $contains = dartx.contains;
+  var $removeWhere = dartx.removeWhere;
+  var $addAll = dartx.addAll;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    CountryL: () => (T.CountryL = dart.constFn(dart.legacy(country.Country)))(),
+    JSArrayOfCountryL: () => (T.JSArrayOfCountryL = dart.constFn(_interceptors.JSArray$(T.CountryL())))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    CountryLToboolL: () => (T.CountryLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.CountryL()])))(),
+    VoidToCountryL: () => (T.VoidToCountryL = dart.constFn(dart.fnType(T.CountryL(), [])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    ListOfCountryL: () => (T.ListOfCountryL = dart.constFn(core.List$(T.CountryL())))(),
+    ListLOfCountryL: () => (T.ListLOfCountryL = dart.constFn(dart.legacy(T.ListOfCountryL())))(),
+    ListLOfCountryLToNull: () => (T.ListLOfCountryLToNull = dart.constFn(dart.fnType(core.Null, [T.ListLOfCountryL()])))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    boolLToNull: () => (T.boolLToNull = dart.constFn(dart.fnType(core.Null, [T.boolL()])))(),
+    ListL: () => (T.ListL = dart.constFn(dart.legacy(core.List)))(),
+    LinkedHashMapOfStringL$StringL: () => (T.LinkedHashMapOfStringL$StringL = dart.constFn(collection.LinkedHashMap$(T.StringL(), T.StringL())))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    intLToCountryL: () => (T.intLToCountryL = dart.constFn(dart.fnType(T.CountryL(), [T.intL()])))(),
+    DropdownButtonOfCountryL: () => (T.DropdownButtonOfCountryL = dart.constFn(dropdown.DropdownButton$(T.CountryL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    CountryLToNull: () => (T.CountryLToNull = dart.constFn(dart.fnType(core.Null, [T.CountryL()])))(),
+    DropdownMenuItemOfCountryL: () => (T.DropdownMenuItemOfCountryL = dart.constFn(dropdown.DropdownMenuItem$(T.CountryL())))(),
+    DropdownMenuItemLOfCountryL: () => (T.DropdownMenuItemLOfCountryL = dart.constFn(dart.legacy(T.DropdownMenuItemOfCountryL())))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    CountryLToDropdownMenuItemLOfCountryL: () => (T.CountryLToDropdownMenuItemLOfCountryL = dart.constFn(dart.fnType(T.DropdownMenuItemLOfCountryL(), [T.CountryL()])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.constList([], T.StringL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 53,
+        [_Location_line]: 191,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 42,
+        [_Location_line]: 191,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 19,
+        [_Location_line]: 189,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 191,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[5] || CT.C5,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 188,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 5,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 37,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 31,
+        [_Location_line]: 210,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "package",
+        [_Location_column]: 31,
+        [_Location_line]: 211,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 208,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 38,
+        [_Location_line]: 215,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 215,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 40,
+        [_Location_line]: 216,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 216,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 25,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 23,
+        [_Location_line]: 203,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 204,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 202,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 21,
+        [_Location_line]: 201,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 202,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.constList([C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[29] || CT.C29,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "value",
+        [_Location_column]: 17,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 17,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onChanged",
+        [_Location_column]: 17,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "items",
+        [_Location_column]: 17,
+        [_Location_line]: 199,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 15,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 184,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 184,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 183,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "keyboardType",
+        [_Location_column]: 13,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 13,
+        [_Location_line]: 229,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 13,
+        [_Location_line]: 230,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 227,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 227,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 226,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 181,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 182,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.constList([C[55] || CT.C55, C[56] || CT.C56], T._LocationL());
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[54] || CT.C54,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 180,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.constList([C[59] || CT.C59], T._LocationL());
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[58] || CT.C58,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 179,
+        [_Location_file]: "file:///F:/Flutter/flutter_windows_1.17.5-stable/flutter/.pub-cache/hosted/pub.dartlang.org/international_phone_input-1.0.4/lib/src/international_phone_input.dart"
+      });
+    }
+  }, false);
+  var C = Array(60).fill(void 0);
+  var I = ["package:international_phone_input/src/international_phone_input.dart"];
+  var onPhoneNumberChange$ = dart.privateName(international_phone_input, "InternationalPhoneInput.onPhoneNumberChange");
+  var initialPhoneNumber$ = dart.privateName(international_phone_input, "InternationalPhoneInput.initialPhoneNumber");
+  var initialSelection$ = dart.privateName(international_phone_input, "InternationalPhoneInput.initialSelection");
+  var errorText$ = dart.privateName(international_phone_input, "InternationalPhoneInput.errorText");
+  var hintText$ = dart.privateName(international_phone_input, "InternationalPhoneInput.hintText");
+  var labelText$ = dart.privateName(international_phone_input, "InternationalPhoneInput.labelText");
+  var errorStyle$ = dart.privateName(international_phone_input, "InternationalPhoneInput.errorStyle");
+  var hintStyle$ = dart.privateName(international_phone_input, "InternationalPhoneInput.hintStyle");
+  var labelStyle$ = dart.privateName(international_phone_input, "InternationalPhoneInput.labelStyle");
+  var errorMaxLines$ = dart.privateName(international_phone_input, "InternationalPhoneInput.errorMaxLines");
+  var enabledCountries$ = dart.privateName(international_phone_input, "InternationalPhoneInput.enabledCountries");
+  var decoration$ = dart.privateName(international_phone_input, "InternationalPhoneInput.decoration");
+  var showCountryCodes$ = dart.privateName(international_phone_input, "InternationalPhoneInput.showCountryCodes");
+  var showCountryFlags$ = dart.privateName(international_phone_input, "InternationalPhoneInput.showCountryFlags");
+  var dropdownIcon$ = dart.privateName(international_phone_input, "InternationalPhoneInput.dropdownIcon");
+  var border$ = dart.privateName(international_phone_input, "InternationalPhoneInput.border");
+  international_phone_input.InternationalPhoneInput = class InternationalPhoneInput extends framework.StatefulWidget {
+    get onPhoneNumberChange() {
+      return this[onPhoneNumberChange$];
+    }
+    set onPhoneNumberChange(value) {
+      super.onPhoneNumberChange = value;
+    }
+    get initialPhoneNumber() {
+      return this[initialPhoneNumber$];
+    }
+    set initialPhoneNumber(value) {
+      super.initialPhoneNumber = value;
+    }
+    get initialSelection() {
+      return this[initialSelection$];
+    }
+    set initialSelection(value) {
+      super.initialSelection = value;
+    }
+    get errorText() {
+      return this[errorText$];
+    }
+    set errorText(value) {
+      super.errorText = value;
+    }
+    get hintText() {
+      return this[hintText$];
+    }
+    set hintText(value) {
+      super.hintText = value;
+    }
+    get labelText() {
+      return this[labelText$];
+    }
+    set labelText(value) {
+      super.labelText = value;
+    }
+    get errorStyle() {
+      return this[errorStyle$];
+    }
+    set errorStyle(value) {
+      super.errorStyle = value;
+    }
+    get hintStyle() {
+      return this[hintStyle$];
+    }
+    set hintStyle(value) {
+      super.hintStyle = value;
+    }
+    get labelStyle() {
+      return this[labelStyle$];
+    }
+    set labelStyle(value) {
+      super.labelStyle = value;
+    }
+    get errorMaxLines() {
+      return this[errorMaxLines$];
+    }
+    set errorMaxLines(value) {
+      super.errorMaxLines = value;
+    }
+    get enabledCountries() {
+      return this[enabledCountries$];
+    }
+    set enabledCountries(value) {
+      super.enabledCountries = value;
+    }
+    get decoration() {
+      return this[decoration$];
+    }
+    set decoration(value) {
+      super.decoration = value;
+    }
+    get showCountryCodes() {
+      return this[showCountryCodes$];
+    }
+    set showCountryCodes(value) {
+      super.showCountryCodes = value;
+    }
+    get showCountryFlags() {
+      return this[showCountryFlags$];
+    }
+    set showCountryFlags(value) {
+      super.showCountryFlags = value;
+    }
+    get dropdownIcon() {
+      return this[dropdownIcon$];
+    }
+    set dropdownIcon(value) {
+      super.dropdownIcon = value;
+    }
+    get border() {
+      return this[border$];
+    }
+    set border(value) {
+      super.border = value;
+    }
+    static internationalizeNumber(number, iso) {
+      return phone_service.PhoneService.getNormalizedPhoneNumber(number, iso);
+    }
+    createState() {
+      return new international_phone_input._InternationalPhoneInputState.new();
+    }
+  };
+  (international_phone_input.InternationalPhoneInput.new = function(opts) {
+    let onPhoneNumberChange = opts && 'onPhoneNumberChange' in opts ? opts.onPhoneNumberChange : null;
+    let initialPhoneNumber = opts && 'initialPhoneNumber' in opts ? opts.initialPhoneNumber : null;
+    let initialSelection = opts && 'initialSelection' in opts ? opts.initialSelection : null;
+    let errorText = opts && 'errorText' in opts ? opts.errorText : null;
+    let hintText = opts && 'hintText' in opts ? opts.hintText : null;
+    let labelText = opts && 'labelText' in opts ? opts.labelText : null;
+    let errorStyle = opts && 'errorStyle' in opts ? opts.errorStyle : null;
+    let hintStyle = opts && 'hintStyle' in opts ? opts.hintStyle : null;
+    let labelStyle = opts && 'labelStyle' in opts ? opts.labelStyle : null;
+    let enabledCountries = opts && 'enabledCountries' in opts ? opts.enabledCountries : C[0] || CT.C0;
+    let errorMaxLines = opts && 'errorMaxLines' in opts ? opts.errorMaxLines : null;
+    let decoration = opts && 'decoration' in opts ? opts.decoration : null;
+    let showCountryCodes = opts && 'showCountryCodes' in opts ? opts.showCountryCodes : true;
+    let showCountryFlags = opts && 'showCountryFlags' in opts ? opts.showCountryFlags : true;
+    let dropdownIcon = opts && 'dropdownIcon' in opts ? opts.dropdownIcon : null;
+    let border = opts && 'border' in opts ? opts.border : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[onPhoneNumberChange$] = onPhoneNumberChange;
+    this[initialPhoneNumber$] = initialPhoneNumber;
+    this[initialSelection$] = initialSelection;
+    this[errorText$] = errorText;
+    this[hintText$] = hintText;
+    this[labelText$] = labelText;
+    this[errorStyle$] = errorStyle;
+    this[hintStyle$] = hintStyle;
+    this[labelStyle$] = labelStyle;
+    this[enabledCountries$] = enabledCountries;
+    this[errorMaxLines$] = errorMaxLines;
+    this[decoration$] = decoration;
+    this[showCountryCodes$] = showCountryCodes;
+    this[showCountryFlags$] = showCountryFlags;
+    this[dropdownIcon$] = dropdownIcon;
+    this[border$] = border;
+    international_phone_input.InternationalPhoneInput.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = international_phone_input.InternationalPhoneInput.prototype;
+  dart.addTypeTests(international_phone_input.InternationalPhoneInput);
+  dart.addTypeCaches(international_phone_input.InternationalPhoneInput);
+  dart.setMethodSignature(international_phone_input.InternationalPhoneInput, () => ({
+    __proto__: dart.getMethods(international_phone_input.InternationalPhoneInput.__proto__),
+    createState: dart.fnType(dart.legacy(international_phone_input._InternationalPhoneInputState), [])
+  }));
+  dart.setLibraryUri(international_phone_input.InternationalPhoneInput, I[0]);
+  dart.setFieldSignature(international_phone_input.InternationalPhoneInput, () => ({
+    __proto__: dart.getFields(international_phone_input.InternationalPhoneInput.__proto__),
+    onPhoneNumberChange: dart.finalFieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(core.String), dart.legacy(core.String), dart.legacy(core.String)]))),
+    initialPhoneNumber: dart.finalFieldType(dart.legacy(core.String)),
+    initialSelection: dart.finalFieldType(dart.legacy(core.String)),
+    errorText: dart.finalFieldType(dart.legacy(core.String)),
+    hintText: dart.finalFieldType(dart.legacy(core.String)),
+    labelText: dart.finalFieldType(dart.legacy(core.String)),
+    errorStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle)),
+    hintStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle)),
+    labelStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle)),
+    errorMaxLines: dart.finalFieldType(dart.legacy(core.int)),
+    enabledCountries: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    decoration: dart.finalFieldType(dart.legacy(input_decorator.InputDecoration)),
+    showCountryCodes: dart.finalFieldType(dart.legacy(core.bool)),
+    showCountryFlags: dart.finalFieldType(dart.legacy(core.bool)),
+    dropdownIcon: dart.finalFieldType(dart.legacy(framework.Widget)),
+    border: dart.finalFieldType(dart.legacy(input_border.InputBorder))
+  }));
+  var _validatePhoneNumber = dart.privateName(international_phone_input, "_validatePhoneNumber");
+  var _fetchCountryData = dart.privateName(international_phone_input, "_fetchCountryData");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  international_phone_input._InternationalPhoneInputState = class _InternationalPhoneInputState extends framework.State$(dart.legacy(international_phone_input.InternationalPhoneInput)) {
+    initState() {
+      let t0, t0$;
+      this.errorText = (t0 = this.widget.errorText, t0 == null ? "Please enter a valid phone number" : t0);
+      this.hintText = (t0$ = this.widget.hintText, t0$ == null ? "eg. 244056345" : t0$);
+      this.labelText = this.widget.labelText;
+      this.errorStyle = this.widget.errorStyle;
+      this.hintStyle = this.widget.hintStyle;
+      this.labelStyle = this.widget.labelStyle;
+      this.errorMaxLines = this.widget.errorMaxLines;
+      this.decoration = this.widget.decoration;
+      this.showCountryCodes = this.widget.showCountryCodes;
+      this.showCountryFlags = this.widget.showCountryFlags;
+      this.dropdownIcon = this.widget.dropdownIcon;
+      this.phoneTextController.addListener(dart.bind(this, _validatePhoneNumber));
+      this.phoneTextController.text = this.widget.initialPhoneNumber;
+      this[_fetchCountryData]().then(core.Null, dart.fn(list => {
+        let preSelectedItem = null;
+        if (this.widget.initialSelection != null) {
+          preSelectedItem = list[$firstWhere](dart.fn(e => e.code[$toUpperCase]() === this.widget.initialSelection[$toUpperCase]() || e.dialCode === dart.toString(this.widget.initialSelection), T.CountryLToboolL()), {orElse: dart.fn(() => list[$_get](0), T.VoidToCountryL())});
+        } else {
+          preSelectedItem = list[$_get](0);
+        }
+        this.setState(dart.fn(() => {
+          this.itemList = list;
+          this.selectedItem = preSelectedItem;
+        }, T.VoidToNull()));
+      }, T.ListLOfCountryLToNull()));
+      super.initState();
+    }
+    [_validatePhoneNumber]() {
+      let phoneText = this.phoneTextController.text;
+      if (phoneText != null && phoneText[$isNotEmpty]) {
+        phone_service.PhoneService.parsePhoneNumber(phoneText, this.selectedItem.code).then(core.Null, dart.fn(isValid => {
+          let t3, t2, t1, t0;
+          this.setState(dart.fn(() => {
+            this.hasError = !dart.test(isValid);
+          }, T.VoidToNull()));
+          if (this.widget.onPhoneNumberChange != null) {
+            if (dart.test(isValid)) {
+              phone_service.PhoneService.getNormalizedPhoneNumber(phoneText, this.selectedItem.code).then(core.Null, dart.fn(number => {
+                let t3, t2, t1, t0;
+                t0 = this.widget;
+                t1 = phoneText;
+                t2 = number;
+                t3 = this.selectedItem.code;
+                t0.onPhoneNumberChange(t1, t2, t3);
+              }, T.StringLToNull()));
+            } else {
+              t0 = this.widget;
+              t1 = "";
+              t2 = "";
+              t3 = this.selectedItem.code;
+              t0.onPhoneNumberChange(t1, t2, t3);
+            }
+          }
+        }, T.boolLToNull()));
+      }
+    }
+    [_fetchCountryData]() {
+      return async.async(T.ListLOfCountryL(), (function* _fetchCountryData() {
+        let list = (yield basic.DefaultAssetBundle.of(this.context).loadString("packages/international_phone_input/assets/countries.json"));
+        let jsonList = T.ListL().as(convert.json.decode(list));
+        let countries = T.ListOfCountryL().generate(jsonList[$length], dart.fn(index => {
+          let elem = T.LinkedHashMapOfStringL$StringL().from(core.Map.as(jsonList[$_get](index)));
+          if (dart.test(this.widget.enabledCountries[$isEmpty])) {
+            return new country.Country.new({name: elem[$_get]("en_short_name"), code: elem[$_get]("alpha_2_code"), dialCode: elem[$_get]("dial_code"), flagUri: "assets/flags/" + elem[$_get]("alpha_2_code")[$toLowerCase]() + ".png"});
+          } else if (dart.test(this.widget.enabledCountries[$contains](elem[$_get]("alpha_2_code"))) || dart.test(this.widget.enabledCountries[$contains](elem[$_get]("dial_code")))) {
+            return new country.Country.new({name: elem[$_get]("en_short_name"), code: elem[$_get]("alpha_2_code"), dialCode: elem[$_get]("dial_code"), flagUri: "assets/flags/" + elem[$_get]("alpha_2_code")[$toLowerCase]() + ".png"});
+          } else {
+            return null;
+          }
+        }, T.intLToCountryL()));
+        countries[$removeWhere](dart.fn(value => value == null, T.CountryLToboolL()));
+        return countries;
+      }).bind(this));
+    }
+    build(context) {
+      let t0, t2, t2$, t2$0, t2$1, t1;
+      return new container.Container.new({child: new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new dropdown.DropdownButtonHideUnderline.new({child: new basic.Padding.new({padding: new edge_insets.EdgeInsets.only({top: 8.0}), child: new (T.DropdownButtonOfCountryL()).new({value: this.selectedItem, icon: new basic.Padding.new({padding: new edge_insets.EdgeInsets.only({bottom: this.decoration != null ? 6.0 : 0.0}), child: (t0 = this.dropdownIcon, t0 == null ? new icon.Icon.new(icons.Icons.arrow_drop_down, {$creationLocationd_0dea112b090073317d4: C[1] || CT.C1}) : t0), $creationLocationd_0dea112b090073317d4: C[4] || CT.C4}), onChanged: dart.fn(newValue => {
+                    this.setState(dart.fn(() => {
+                      this.selectedItem = newValue;
+                    }, T.VoidToNull()));
+                    this[_validatePhoneNumber]();
+                  }, T.CountryLToNull()), items: this.itemList[$map](T.DropdownMenuItemLOfCountryL(), dart.fn(value => new (T.DropdownMenuItemOfCountryL()).new({value: value, child: new container.Container.new({padding: C[8] || CT.C8, child: new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.spaceEvenly, children: (() => {
+                          let t0 = T.JSArrayOfWidgetL().of([]);
+                          if (dart.test(this.showCountryFlags)) t0[$addAll](T.JSArrayOfWidgetL().of([new image.Image.asset(value.flagUri, {width: 32.0, package: "international_phone_input", $creationLocationd_0dea112b090073317d4: C[9] || CT.C9})]));
+                          if (dart.test(this.showCountryCodes)) t0[$addAll](T.JSArrayOfWidgetL().of([new basic.SizedBox.new({width: 4.0, $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), new text.Text.new(value.dialCode, {$creationLocationd_0dea112b090073317d4: C[17] || CT.C17})]));
+                          return t0;
+                        })(), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20}), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}), $creationLocationd_0dea112b090073317d4: C[28] || CT.C28}), T.CountryLToDropdownMenuItemLOfCountryL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), new basic.Flexible.new({child: new text_field.TextField.new({keyboardType: text_input.TextInputType.phone, controller: this.phoneTextController, decoration: (t1 = this.decoration, t1 == null ? new input_decorator.InputDecoration.new({hintText: this.hintText, labelText: this.labelText, errorText: dart.test(this.hasError) ? this.errorText : null, hintStyle: (t2 = this.hintStyle, t2 == null ? null : t2), errorStyle: (t2$ = this.errorStyle, t2$ == null ? null : t2$), labelStyle: this.labelStyle, errorMaxLines: (t2$0 = this.errorMaxLines, t2$0 == null ? 3 : t2$0), border: (t2$1 = this.border, t2$1 == null ? null : t2$1)}) : t1), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45}), $creationLocationd_0dea112b090073317d4: C[50] || CT.C50})]), $creationLocationd_0dea112b090073317d4: C[53] || CT.C53}), $creationLocationd_0dea112b090073317d4: C[57] || CT.C57});
+    }
+  };
+  (international_phone_input._InternationalPhoneInputState.new = function() {
+    this.selectedItem = null;
+    this.itemList = T.JSArrayOfCountryL().of([]);
+    this.errorText = null;
+    this.hintText = null;
+    this.labelText = null;
+    this.errorStyle = null;
+    this.hintStyle = null;
+    this.labelStyle = null;
+    this.errorMaxLines = null;
+    this.hasError = false;
+    this.showCountryCodes = null;
+    this.showCountryFlags = null;
+    this.decoration = null;
+    this.dropdownIcon = null;
+    this.border = null;
+    this.phoneTextController = new editable_text.TextEditingController.new();
+    international_phone_input._InternationalPhoneInputState.__proto__.new.call(this);
+    ;
+  }).prototype = international_phone_input._InternationalPhoneInputState.prototype;
+  dart.addTypeTests(international_phone_input._InternationalPhoneInputState);
+  dart.addTypeCaches(international_phone_input._InternationalPhoneInputState);
+  dart.setMethodSignature(international_phone_input._InternationalPhoneInputState, () => ({
+    __proto__: dart.getMethods(international_phone_input._InternationalPhoneInputState.__proto__),
+    [_validatePhoneNumber]: dart.fnType(dart.dynamic, []),
+    [_fetchCountryData]: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(country.Country))))), []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(international_phone_input._InternationalPhoneInputState, I[0]);
+  dart.setFieldSignature(international_phone_input._InternationalPhoneInputState, () => ({
+    __proto__: dart.getFields(international_phone_input._InternationalPhoneInputState.__proto__),
+    selectedItem: dart.fieldType(dart.legacy(country.Country)),
+    itemList: dart.fieldType(dart.legacy(core.List$(dart.legacy(country.Country)))),
+    errorText: dart.fieldType(dart.legacy(core.String)),
+    hintText: dart.fieldType(dart.legacy(core.String)),
+    labelText: dart.fieldType(dart.legacy(core.String)),
+    errorStyle: dart.fieldType(dart.legacy(text_style.TextStyle)),
+    hintStyle: dart.fieldType(dart.legacy(text_style.TextStyle)),
+    labelStyle: dart.fieldType(dart.legacy(text_style.TextStyle)),
+    errorMaxLines: dart.fieldType(dart.legacy(core.int)),
+    hasError: dart.fieldType(dart.legacy(core.bool)),
+    showCountryCodes: dart.fieldType(dart.legacy(core.bool)),
+    showCountryFlags: dart.fieldType(dart.legacy(core.bool)),
+    decoration: dart.fieldType(dart.legacy(input_decorator.InputDecoration)),
+    dropdownIcon: dart.fieldType(dart.legacy(framework.Widget)),
+    border: dart.fieldType(dart.legacy(input_border.InputBorder)),
+    phoneTextController: dart.finalFieldType(dart.legacy(editable_text.TextEditingController))
+  }));
+  dart.trackLibraries("packages/international_phone_input/src/international_phone_input.dart", {
+    "package:international_phone_input/src/international_phone_input.dart": international_phone_input
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["international_phone_input.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../../D:/packages/international_phone_input/src/international_phone_input.dart.lib.js"}');
+  // Exports:
+  return {
+    src__international_phone_input: international_phone_input
+  };
+}));
+
+//# sourceMappingURL=international_phone_input.dart.lib.js.map
